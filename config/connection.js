@@ -1,16 +1,17 @@
+/////// DONT TOUCH THIS /////////
 const Sequelize = require('sequelize');
 require('dotenv').config();
-///port connection to 3306///
+// /port connection to 3306///
 const sequelize = process.env.JAWSDB_URL
   ? new Sequelize(process.env.JAWSDB_URL)
-  : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PW, {
+  : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
       host: 'localhost',
       dialect: 'mysql',
-      port: 3001,
-      dialectOptions: {
-        decimalNumbers: true,
-      },
+      port: 3306,
+    //   dialectOptions: {
+    //     decimalNumbers: true,
+    //   },
     });
 
-    /// export sequilize///
+    // / export sequilize///
 module.exports = sequelize;

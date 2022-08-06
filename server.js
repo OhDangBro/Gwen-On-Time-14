@@ -1,24 +1,24 @@
-///bring in dotenv///
-require('dotenv').config();
-///require sequilize////
-const express = require('express');
-const Sequelize = require('sequelize');
-const exphbs = require('express-handlebars');
 const path = require('path');
+const express = require('express');
+const exphbs = require('express-handlebars');
+// const Sequelize = require('sequelize');
+require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+const sequelize = require("./config/connection");
+const routes = require('./controllers');
 const hbs = exphbs.create({});
-///port connection to 3306///
-const sequelize = process.env.JAWSDB_URL
-  ? new Sequelize(process.env.JAWSDB_URL)
-  : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PW, {
-      host: 'localhost',
-      dialect: 'mysql',
-      port: 3001,
-      dialectOptions: {
-        decimalNumbers: true,
-      },
-    });
-    console.log('Now connected to port 3306')
-/// export sequilize///
-module.exports = sequelize;
+
+// app.engine('handlebars', hbs.engine);
+// app.set('view engine', 'handlebars');
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(routes);
+
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log(`Now listening ${PORT}` ));
+});
