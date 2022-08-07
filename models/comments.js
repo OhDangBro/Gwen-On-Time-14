@@ -24,7 +24,7 @@ Comment.init(
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'user',
+            model: 'Users',
             key: 'id'
         }
     },
@@ -32,7 +32,7 @@ Comment.init(
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'post',
+            model: 'Posts',
             key: 'id'
         }
     }
@@ -40,7 +40,7 @@ Comment.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'comment'
+    modelName: 'Comments'
 })
 
 /// Exports Comment

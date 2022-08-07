@@ -32,7 +32,7 @@ class Users extends Model {}
             sequelize,
             freezeTableName: true,
             underscored: true,
-            modelName: 'users'
+            modelName: 'Users'
         });
 
 module.exports = Users;

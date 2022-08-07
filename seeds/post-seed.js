@@ -1,7 +1,7 @@
-const { Post } = require('../models/index');
+const { Post } = require('../models');
 
 
-const Postdata = [
+const postData = [
     {
         title: 'Post Title 1',
         post_content: 'Blah Blah Blah',
