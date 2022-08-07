@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 
 class User extends Model {}
  
-    Users.init(
+    User.init(
         {
           ///// id # //////
           id: {
