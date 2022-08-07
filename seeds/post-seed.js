@@ -1,22 +1,26 @@
-const { Post } = require('../models');
+const { Post, DataTypes } = require('../models');
+const sequelize = require('../config/connection')
 
-const postData = [{
+class Post extends Model {}
+
+Post.init(
+    {
         title: 'Post Title 1',
-        content: 'Blah Blah Blah',
-        user_id: 1
+        post_content: 'Blah Blah Blah',
+        creators_id: 1
 
     },
     {
         title: 'Post Title 2',
-        content: 'Fucken aquaman',
-        user_id: 2
+        post_content: 'Fucken aquaman',
+        creators_id: 2
     },
     {
         title: 'Post Title 3',
-        content: 'Plz Work for me',
-        user_id: 3
+        post_content: 'Plz Work for me',
+        creators_id: 3
     }
-];
+);
 
 const seedPosts = () => Post.bulkCreate(postData);
 

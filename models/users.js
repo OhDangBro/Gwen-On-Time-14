@@ -4,9 +4,9 @@ const sequelize = require("../config/connection");
 const bcrypt = require("bcrypt");
 
 
-class User extends Model {}
+class Users extends Model {}
  
-    User.init(
+    Users.init(
         {
           ///// id # //////
           id: {
@@ -27,6 +27,12 @@ class User extends Model {}
 
             }
           }
+          },
+          {
+            sequelize,
+            freezeTableName: true,
+            underscored: true,
+            modelName: 'users'
         });
 
-module.exports = User;
+module.exports = Users;

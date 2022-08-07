@@ -1,4 +1,9 @@
 const router = require('express').Router();
-const homeRoutes = require('./home-routes');
-router.use('/', homeRoutes);
+const sequelize = require('../config/connection');
+
+
+router.get("/", (req, res) => {
+    res.send("Hellow World!")
+});
+
 module.exports = router;
