@@ -1,16 +1,22 @@
 const router = require('express').Router();
 const { Post, User, Users } = require('../../models');
 
-router.get('/', (req, res) => {
-    Users.findAll({
-            attributes: {
-                exclude: ['password']
-            }
-        })
-        .then(dbUserData => res.json(dbUserData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-
+function signupFormHandler(event) {
+    event.preventDefault();
+  
+    const username = document.querySelector('#username-signup').value.trim();
+    const email = document.querySelector('#email-signup').value.trim();
+    const password = document.querySelector('#password-signup').value.trim();
+  
+    if (username && email && password) {
+      fetch('/api/users', {
+        method: 'post',
+        body: JSON.stringify({
+          username,
+          email,
+          password
+        }),
+        headers: { 'Content-Type': 'application/json' }
+      }).then((response) => {console.log(response)})
+    }
+  }
