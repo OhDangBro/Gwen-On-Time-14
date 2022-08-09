@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, User, Users } = require('../../models');
+const { Post, Comment, Users } = require('../../models');
 
 function signupFormHandler(event) {
     event.preventDefault();
