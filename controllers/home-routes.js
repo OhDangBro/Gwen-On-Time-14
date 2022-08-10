@@ -63,7 +63,7 @@ router.get('/post/:id', (req, res) => {
         }
       },
       {
-        model: User,
+        model: Users,
         attributes: ['user_name']
       }
     ]
@@ -76,7 +76,7 @@ router.get('/post/:id', (req, res) => {
 
       const post = dbPostData.get({ plain: true });
 
-      res.render('single-post', {
+      res.render('singlepost', {
         post,
         loggedIn: req.session.loggedIn
       });
