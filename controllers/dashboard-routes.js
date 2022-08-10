@@ -15,7 +15,8 @@ router.get('/', withAuth, (req, res) => {
       'id',
       'post_content',
       'title',
-      [sequelize.literal('(SELECT COUNT(*) FROM ______ WHERE post.id = _____.post_id)'), '________']
+      
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id')]
     ],
     include: [
       {
