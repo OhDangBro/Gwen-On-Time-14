@@ -1,3 +1,3 @@
-CREATE DATABASE techblog_db;
+CREATE DATABASE techblog_db
 
-USE techblog_db;
+USE techblog_db
