@@ -8,6 +8,7 @@ router.use('/', homeRoutes);
 router.use('/dashboard', dashboardRoutes);
 router.use('/api', apiRoutes);
 
+
 // new get code
 // router.get('/', async (req, res) => {
 //   try {
