@@ -51,8 +51,7 @@ router.get('/post/:id', (req, res) => {
       'id',
       'post_content',
       'title',
-      'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM _____ WHERE post.id = ________.post_id)'), '_______']
+      'created_at'
     ],
     include: [
       {

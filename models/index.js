@@ -2,7 +2,7 @@
 // Import all the models
 const Users = require("./users");
 const Post = require("./posts");
-const Comment = require("./comments");
+const Comment = require("./comment");
 
 //set up relationships
 Users.hasMany(Post, {
@@ -17,7 +17,7 @@ Users.hasMany(Post, {
   });
   
   Comment.belongsTo(Post, {
-    foreignKey: "Post_id",
+    foreignKey: "Posts_id",
   });
   
   Users.hasMany(Comment, {
@@ -25,7 +25,7 @@ Users.hasMany(Post, {
   });
   
   Post.hasMany(Comment, {
-    foreignKey: "Post_id",
+    foreignKey: "Posts_id",
   });
   
   module.exports = { Users, Post, Comment };
