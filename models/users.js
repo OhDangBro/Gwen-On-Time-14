@@ -42,26 +42,12 @@ class Users extends Model {
 
             }
           }
-        },
-        {
-          hooks: {
-            // set up beforeCreate lifecycle "hook" functionality
-            async beforeCreate(newUserData) {
-              newUserData.password = await bcrypt.hash(newUserData.password, 10);
-              return newUserData;
-            },
-      
-            async beforeUpdate(updatedUserData) {
-              updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
-              return updatedUserData;
-            }
           },
-          sequelize,
-          timestamps: false,
-          freezeTableName: true,
-          underscored: true,
-          modelName: 'users'
-        }
-        );
+          {
+            sequelize,
+            freezeTableName: true,
+            underscored: true,
+            modelName: 'Users'
+        });
 
 module.exports = Users;
