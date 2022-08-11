@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 const { Post, Users, Comment, Vote } = require('../models');
 
 // get all posts for homepage
-router.get('/', (req, res) => {
+router.get('/homepage', (req, res) => {
   console.log('======================');
   Post.findAll({
     attributes: [
@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
       'post_content',
       'title',
       
-      [sequelize.literal('(SELECT COUNT(*) FROM posts WHERE post.id = vote.post_id)'), 'vote_count']
+      // [sequelize.literal('(SELECT COUNT(*) FROM posts)')]
     ],
     include: [
       {

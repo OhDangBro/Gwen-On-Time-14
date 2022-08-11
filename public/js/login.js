@@ -1,11 +1,11 @@
-alert("test")
+
 async function loginFormHandler(event) {
   event.preventDefault();
 
   const email = document.querySelector('#email-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
   fetch("/api/users/login", {
-    method: "post",
+    method: "POST",
     body: JSON.stringify({
       email: email,
       password: password
@@ -13,7 +13,7 @@ async function loginFormHandler(event) {
     headers: { "Content-Type": "application/json" }
   })
     .then(function() {
-      document.location.replace("/dashboard");
+      document.location.replace("/dashboard/");
     })
     .catch(err => console.log(err));
 };
