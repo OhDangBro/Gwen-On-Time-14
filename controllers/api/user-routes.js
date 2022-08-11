@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, Comment, Users } = require('../../models');
+const { Post, Comment, Users, Vote } = require('../../models');
 
 // get all users
 router.get('/', (req, res) => {
@@ -32,6 +32,12 @@ router.get('/:id', (req, res) => {
           attributes: ['title']
         }
       },
+      {
+        model: Post,
+        attributes: ['title'],
+        through: Vote,
+        as: 'voted_posts'
+      }
     ]
   })
     .then(dbUserData => {
@@ -47,7 +53,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/api/users/login', (req, res) => {
+router.post('/', (req, res) => {
   // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
   Users.create({
     username: req.body.username,
@@ -69,7 +75,7 @@ router.post('/api/users/login', (req, res) => {
     });
 });
 
-router.post('api/users/login', (req, res) => {
+router.post('/login', (req, res) => {
   // expects {email: 'lernantino@gmail.com', password: 'password1234'}
   Users.findOne({
     where: {
@@ -98,58 +104,58 @@ router.post('api/users/login', (req, res) => {
   });
 });
 
-router.post('/logout', (req, res) => {
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  }
-  else {
-    res.status(404).end();
-  }
-});
+// router.post('/logout', (req, res) => {
+//   if (req.session.loggedIn) {
+//     req.session.destroy(() => {
+//       res.status(204).end();
+//     });
+//   }
+//   else {
+//     res.status(404).end();
+//   }
+// });
 
-router.put('/:id', (req, res) => {
-  // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
+// router.put('/:id', (req, res) => {
+//   // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
 
-  // pass in req.body instead to only update what's passed through
-  Users.update(req.body, {
-    individualHooks: true,
-    where: {
-      id: req.params.id
-    }
-  })
-    .then(dbUserData => {
-      if (!dbUserData) {
-        res.status(404).json({ message: 'No user found with this id' });
-        return;
-      }
-      res.json(dbUserData);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+//   // pass in req.body instead to only update what's passed through
+//   Users.update(req.body, {
+//     individualHooks: true,
+//     where: {
+//       id: req.params.id
+//     }
+//   })
+//     .then(dbUserData => {
+//       if (!dbUserData) {
+//         res.status(404).json({ message: 'No user found with this id' });
+//         return;
+//       }
+//       res.json(dbUserData);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
-router.delete('/:id', (req, res) => {
-  Users.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-    .then(dbUserData => {
-      if (!dbUserData) {
-        res.status(404).json({ message: 'No user found with this id' });
-        return;
-      }
-      res.json(dbUserData);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+// router.delete('/:id', (req, res) => {
+//   Users.destroy({
+//     where: {
+//       id: req.params.id
+//     }
+//   })
+//     .then(dbUserData => {
+//       if (!dbUserData) {
+//         res.status(404).json({ message: 'No user found with this id' });
+//         return;
+//       }
+//       res.json(dbUserData);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
 
 
