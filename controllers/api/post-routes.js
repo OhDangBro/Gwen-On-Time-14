@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_content', 'post_id', 'user_id'],
+        attributes: ['id', 'comment_content', 'post_id', 'user_id',],
         include: {
           model: Users,
           attributes: ['username']
@@ -89,15 +89,15 @@ router.post('/', withAuth, (req, res) => {
     });
 });
 
-router.put('/upvote', withAuth, (req, res) => {
-  // custom static method created in models/Post.js
-  Post.upvote({ ...req.body, user_id: req.session.user_id }, {  Comment, Users })
-    .then(updatedVoteData => res.json(updatedVoteData))
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+// router.put('/upvote', withAuth, (req, res) => {
+//   // custom static method created in models/Post.js
+//   Post.upvote({ ...req.body, user_id: req.session.user_id }, {  Comment, Users })
+//     .then(updatedVoteData => res.json(updatedVoteData))
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
 //// Update post
 router.put('/:id', withAuth, (req, res) => {

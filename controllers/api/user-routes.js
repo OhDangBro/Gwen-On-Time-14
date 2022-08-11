@@ -47,7 +47,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/api/users/login', (req, res) => {
   // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
   Users.create({
     username: req.body.username,
@@ -69,7 +69,7 @@ router.post('/', (req, res) => {
     });
 });
 
-router.post('/login', (req, res) => {
+router.post('api/users/login', (req, res) => {
   // expects {email: 'lernantino@gmail.com', password: 'password1234'}
   Users.findOne({
     where: {
