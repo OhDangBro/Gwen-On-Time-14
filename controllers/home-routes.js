@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Post, Users, Comment } = require('../models');
+const { Post, Users, Comment, Vote } = require('../models');
 
 // get all posts for homepage
 router.get('/', (req, res) => {
@@ -10,12 +10,13 @@ router.get('/', (req, res) => {
       'id',
       'post_content',
       'title',
-      // [sequelize.literal('(SELECT COUNT(*) FROM posts WHERE post.id = vote.post_id)'), 'vote_count']
+      'create_at'
+      [sequelize.literal('(SELECT COUNT(*) FROM posts WHERE post.id = vote.post_id)'), 'vote_count']
     ],
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_content', 'post_id', 'user_id', 'created_at'],
+        attributes: ['id', 'comment_content', 'post_id', 'user_id',],
         include: {
           model: Users,
           attributes: ['username']
