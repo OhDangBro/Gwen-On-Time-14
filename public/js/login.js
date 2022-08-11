@@ -6,15 +6,15 @@ async function loginFormHandler(event) {
   fetch("/api/users/login", {
     method: "post",
     body: JSON.stringify({
-      email: email.value,
-      password: password.value
+      email: email,
+      password: password
     }),
     headers: { "Content-Type": "application/json" }
   })
     .then(function() {
       document.location.replace("/dashboard");
     })
-    .catch(err => console.log(err));//
+    .catch(err => console.log(err));
 };
   
 async function signupFormHandler(event) {
