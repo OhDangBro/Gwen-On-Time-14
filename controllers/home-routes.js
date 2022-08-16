@@ -1,30 +1,30 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Post, Users, Comment, Vote } = require('../models');
+const { Post, User, Comment, Vote } = require('../models');
 
 // get all posts for homepage
-router.get('/homepage', (req, res) => {
+router.get('/', (req, res) => {
   console.log('======================');
   Post.findAll({
     attributes: [
       'id',
-      'post_content',
+      'post_url',
       'title',
-      
-      // [sequelize.literal('(SELECT COUNT(*) FROM posts)')]
+      'created_at',
+      [sequelize.literal('(SELECT COUNT(*) FROM ______ WHERE post.id = _________)'), '_____']
     ],
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_content', 'post_id', 'user_id',],
+        attributes: ['id', 'comment_content', 'post_id', 'user_id', 'created_at'],
         include: {
-          model: Users,
-          attributes: ['username']
+          model: User,
+          attributes: ['user_name']
         }
       },
       {
-        model: Users,
-        attributes: ['username']
+        model: User,
+        attributes: ['user_name']
       }
     ]
   })
@@ -52,20 +52,20 @@ router.get('/post/:id', (req, res) => {
       'id',
       'post_content',
       'title',
-      'created_at'
+      [sequelize.literal('(SELECT COUNT(*) FROM ______ WHERE post.id = _______)'), '________']
     ],
     include: [
       {
         model: Comment,
         attributes: ['id', 'comment_content', 'post_id', 'user_id'],
         include: {
-          model: Users,
-          attributes: ['username']
+          model: User,
+          attributes: ['user_name']
         }
       },
       {
-        model: Users,
-        attributes: ['username']
+        model: User,
+        attributes: ['user_name']
       }
     ]
   })
@@ -77,7 +77,7 @@ router.get('/post/:id', (req, res) => {
 
       const post = dbPostData.get({ plain: true });
 
-      res.render('singlepost', {
+      res.render('single-post', {
         post,
         loggedIn: req.session.loggedIn
       });
