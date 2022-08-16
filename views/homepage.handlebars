@@ -1,46 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Just Tech News</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
-
-<body>
-  <div class="wrapper">
-    <header>
-      <h1>
-       
-      </h1>
-    </header>
-    <main>
-      
-     <ol class="post-list">
-  {{#each Post}}
+<ol class="post-list">
+  {{#each posts as |post|}}
   <li>
-    <article class="post">
-      <div class="title">
-        <a href="post/{{id}}">{{title}}</a>
-        <span>({{post_content}})</span>
-      </div>
-      <div class="meta">
-        Created by {{Users.username}} on
-        {{created_at}}
-        |
-        <a href="/post/{{id}}">{{comments.length}} comment(s)</a>
-      </div>
-    </article>
+    {{> post-info post }}
   </li>
   {{/each}}
 </ol>
-    </main>
-    <footer>
-      Thanks for visiting!
-    </footer>
-  </div>
-
-</body>
-
-</html>
