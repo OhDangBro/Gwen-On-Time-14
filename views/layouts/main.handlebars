@@ -4,18 +4,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Just Tech News</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title>Da Tech Blog</title>
+  <link rel="stylesheet" href="/public/css/style.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css">
 </head>
+<section class="hero is-primary ">
+  <div class="hero-body">
+    <p class="title">
+      
+    </p>
+    <p class="subtitle has-text-centered">
+      Techblog!
+    </p>
+  </div>
+</section>
 
-<body>
+<body class="has-background-grey-lighter">
   <div class="wrapper">
     <header>
       <h1>
-        <a href="/">Just Tech News</a>
+        <a href="/">Da Tech Blog</a>
       </h1>
       <nav>
         {{#if loggedIn}}
+        
         <a href="/dashboard">dashboard</a>
         <button id="logout" class="btn-no-style">logout</button>
         {{else}}

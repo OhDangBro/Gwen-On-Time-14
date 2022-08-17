@@ -9,6 +9,10 @@
     font-family: sans-serif;
     color: #333;
   }
+
+  
+
+
   
   a {
     text-decoration: none;
@@ -19,6 +23,14 @@
   
   a:hover {
     color: #3486eb;
+  }
+
+  .message-body {
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    color: #4a4a4a;
+    padding: 1em 1.25em;
+    background-color: aliceblue !important;
   }
   
   button {
