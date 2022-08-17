@@ -7,14 +7,15 @@
       <input type="text" id="post-title" name="post-title" />
     </div>
     <div>
-      <label for="post-url">Link</label>
-      <input id="post-url" name="post-url" />
+      <label for="post_text">Input</label>
+      <input id="post_text" name="post_text" />
     </div>
     <button type="submit" class="button is-primary">Create</button>
   </form>
 </section>
 
-{{#if posts.length}}
+<div class="box">
+ {{#if posts.length}}
 <section>
   <h2>Your Posts</h2>
   <ol>
@@ -27,5 +28,7 @@
   </ol>
 </section>
 {{/if}}
+</div>
+
 
 <script src="/javascript/add-post.js"></script>
