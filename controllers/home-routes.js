@@ -11,20 +11,20 @@ router.get('/', (req, res) => {
       'post_url',
       'title',
       'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM ______ WHERE post.id = _________)'), '_____']
+      
     ],
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_content', 'post_id', 'user_id', 'created_at'],
+        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
         include: {
           model: User,
-          attributes: ['user_name']
+          attributes: ['username']
         }
       },
       {
         model: User,
-        attributes: ['user_name']
+        attributes: ['username']
       }
     ]
   })
@@ -52,20 +52,20 @@ router.get('/post/:id', (req, res) => {
       'id',
       'post_content',
       'title',
-      [sequelize.literal('(SELECT COUNT(*) FROM ______ WHERE post.id = _______)'), '________']
+      
     ],
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_content', 'post_id', 'user_id'],
+        attributes: ['id', 'comment_text', 'post_id', 'user_id'],
         include: {
           model: User,
-          attributes: ['user_name']
+          attributes: ['username']
         }
       },
       {
         model: User,
-        attributes: ['user_name']
+        attributes: ['username']
       }
     ]
   })

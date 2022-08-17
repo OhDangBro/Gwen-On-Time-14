@@ -2,10 +2,10 @@
   {{#each this}}
   <section class="comment">
     <div class="meta">
-      {{users.username}} 
+      {{user.username}} on {{format_date created_at}}
     </div>
     <div class="text">
-      {{comment_content}}
+      {{comment_text}}
     </div>
   </section>
   {{/each}}
